@@ -7,10 +7,31 @@ weekday[3] = "Wednesday";
 weekday[4] = "Thursday";
 weekday[5] = "Friday";
 weekday[6] = "Saturday";
-
+var url = "http://3.88.144.128/";
 
 (function($, document, window){
+	$.ajax({
+		type: "POST",
+		headers: {
+			"Content-Type": "application/json" 
+		},
+		url: url+"authenticate",
+		data: JSON.stringify({"username":"vishal","password":"password"}),
+		error: function(err) {
+			localStorage.removeItem('token');
 
+			switch (err.status) {
+			case "400":
+			default:
+				console.log("bad request")
+				break;
+			}
+		},
+			success: function(msg) {
+				debugger;
+				localStorage.setItem('token',msg.token);
+			}
+	})
 
 	$(document).ready(function(){
 		// Cloning main navigation for mobile menu
@@ -59,13 +80,16 @@ weekday[6] = "Saturday";
 	});
 
 })(jQuery, document, window);
-var url = "http://3.88.144.128/api/Name/";
 
 function getWeatherDetails(code){
+
 	// Call Web API the weather report
-	var token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aXNoYWwiLCJleHAiOjE2MDc5MjMzMTEsImlhdCI6MTYwNzg4NzMxMX0.K_oRdfACARVil8XGSa79r2OXzlepSVpgCyB8McIURk_mwIDAuK9GuKgFUc0m97e9Ljs17WjmWd6UZ0FcEVpXYw';
+	var token = localStorage.getItem('token');
+	if(!token){
+		alert('Authorization token not found')
+	}
 	console.log(code);
-	var payload=url+code.trim();
+	var payload=url+"api/Name/"+code.trim();
 	$.ajax({
 			type: "GET",
 			headers: {
@@ -107,6 +131,7 @@ function getWeatherDetails(code){
 					header.find('.day').text(weekday[dt.getDay()]);
 					header.find('.date').text(dt.toDateString().substr(4,d.toDateString().length));
 					$('#forecastdesc').text(msg.foreCastExpected);
+					// Binding Logic Goes here
 				}
 			});
 	}
