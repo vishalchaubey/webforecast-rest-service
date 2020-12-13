@@ -4,6 +4,7 @@ package com.example.webforecast.controller;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import com.example.webforecast.service.DataWeatherService;
  * @create: 2020-12-08 23:45
  * @description:
  **/
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class MainController {
@@ -25,7 +27,6 @@ public class MainController {
     @Autowired
     private DataWeatherService dataWeatherService;
 
-    
     @GetMapping("/Name/{Name}")
     public AggregateResponse getWeatherByCityName(@PathVariable("Name") String Name) throws InterruptedException, ExecutionException{
     	
