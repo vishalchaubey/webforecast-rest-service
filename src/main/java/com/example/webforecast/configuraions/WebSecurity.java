@@ -56,20 +56,19 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
-
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		// Cross Origin disabled
 		httpSecurity.cors().and().csrf().disable()
 				// dont authenticate this particular request
-				.authorizeRequests().antMatchers("/authenticate").permitAll().
+				.authorizeRequests().antMatchers("/authenticate/**","/index.html/**","/style.css/**","/js/**","/images/**","/fonts/**").permitAll().
 				// all other requests need to be authenticated
 				anyRequest().authenticated().and().
 				// make sure we use stateless session; session won't be used to
 				// store user's state.
 				exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
+			
 		// Add a filter to validate the tokens with every request
 		httpSecurity.addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
 	}

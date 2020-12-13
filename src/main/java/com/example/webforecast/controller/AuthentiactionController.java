@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.webforecast.exception.BadRequestFoundException;
 import com.example.webforecast.model.Request;
 import com.example.webforecast.model.Response;
 import com.example.webforecast.service.jwtDetailsService;
@@ -55,6 +56,15 @@ public class AuthentiactionController {
 			throw new Exception("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {
 			throw new Exception("INVALID_CREDENTIALS", e);
+		} catch (Exception e) {
+		  throw new BadRequestFoundException("Bad Request");
 		}
 	}
+	
+	/* Index page returns the HTML templates*/ 
+	
+	@RequestMapping(value = "/index")
+    public String index() {
+        return "index";
+    }
 }
