@@ -69,7 +69,7 @@ public class DataWeatherServiceImpl implements DataWeatherService {
 	@Async("asyncBean")
 	public CompletableFuture<ForeCastrResponse> getDataOfForecast(String City) {
 		// TODO Auto-generated method stub
-		logs.info("The Method getDataOfWeather started");
+		logs.info("The Method getDataOfForecast started");
 		String url = FORECAST_URI  + City + "?apikey=" + APIKEY;
 		ForeCastrResponse foreCastresponse = null;
 		try {
@@ -78,7 +78,7 @@ public class DataWeatherServiceImpl implements DataWeatherService {
 			logs.info("The Method getDataOfForecast Exception");
 			throw new BadRequestFoundException("Something Went Wrong. Please try to connect with Admin");
 		}
-		logs.info("The Method getDataOfWeather Ends");
+		logs.info("The Method getDataOfForecast Ends");
 		return CompletableFuture.completedFuture(foreCastresponse);
 	}
 	
