@@ -60,7 +60,7 @@ public class TokenUtil implements Serializable {
 	private String doGenerateToken(Map<String, Object> claims, String subject) {
 
 		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis() + 10 * 60 * 60 * 1000))
+				.setExpiration(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
 				.signWith(SignatureAlgorithm.HS512, secret).compact();
 	}
 
