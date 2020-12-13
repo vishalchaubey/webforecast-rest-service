@@ -59,11 +59,11 @@ weekday[6] = "Saturday";
 	});
 
 })(jQuery, document, window);
-var url = "http://localhost:8081/api/Name/";
+var url = "http://3.88.144.128/api/Name/";
 
 function getWeatherDetails(code){
 	// Call Web API the weather report
-	var token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aXNoYWwiLCJleHAiOjE2MDc5MjAyOTUsImlhdCI6MTYwNzg4NDI5NX0.MmX5ly-HvQiZJnrNCBMzx8MB09daTWutkvzHRu7sWJJmnRv_ogfTlhU0zBNVdlPVFP7OkoqN-yEtq2ky8ejd0Q';
+	var token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aXNoYWwiLCJleHAiOjE2MDc5MjMzMTEsImlhdCI6MTYwNzg4NzMxMX0.K_oRdfACARVil8XGSa79r2OXzlepSVpgCyB8McIURk_mwIDAuK9GuKgFUc0m97e9Ljs17WjmWd6UZ0FcEVpXYw';
 	console.log(code);
 	var payload=url+code.trim();
 	$.ajax({
