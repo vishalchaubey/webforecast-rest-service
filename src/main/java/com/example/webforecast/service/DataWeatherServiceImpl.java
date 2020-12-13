@@ -52,8 +52,10 @@ public class DataWeatherServiceImpl implements DataWeatherService {
         		weatherResponse = restTemplate.getForObject(url, WeatherResponse.class);
         	}catch (Exception e) {
 				// TODO: handle exception
+        		logs.info("The Method getDataOfWeather Exception");
         		throw new BadRequestFoundException("Something Went Wrong. Please try to connect with Admin");
 			}
+        	logs.info("The Method getDataOfWeather Ends");
         return CompletableFuture.completedFuture(weatherResponse);
         
 	}
@@ -67,13 +69,16 @@ public class DataWeatherServiceImpl implements DataWeatherService {
 	@Async("asyncBean")
 	public CompletableFuture<ForeCastrResponse> getDataOfForecast(String City) {
 		// TODO Auto-generated method stub
+		logs.info("The Method getDataOfWeather started");
 		String url = FORECAST_URI  + City + "?apikey=" + APIKEY;
 		ForeCastrResponse foreCastresponse = null;
 		try {
 			foreCastresponse = restTemplate.getForObject(url, ForeCastrResponse.class);
 		}catch(Exception ex) {
+			logs.info("The Method getDataOfForecast Exception");
 			throw new BadRequestFoundException("Something Went Wrong. Please try to connect with Admin");
 		}
+		logs.info("The Method getDataOfWeather Ends");
 		return CompletableFuture.completedFuture(foreCastresponse);
 	}
 	
@@ -85,6 +90,7 @@ public class DataWeatherServiceImpl implements DataWeatherService {
 	@Override
 	public AggregateResponse getResponseMapper(WeatherResponse obj1, ForeCastrResponse obj2) {
 		// TODO Auto-generated method stub
+		logs.info("The Method getResponseMapper started");
 		try {
 		AggregateResponse aggregateResponse =  new AggregateResponse();
 		aggregateResponse.setCityName(obj1.getName());
@@ -103,8 +109,10 @@ public class DataWeatherServiceImpl implements DataWeatherService {
 		aggregateResponse.setForeCastMaximumTemp(obj2.getDailyForecasts().iterator().next().getTemperature().getMaximum().getValue());
 		aggregateResponse.setForeCastMinimumTemp(obj2.getDailyForecasts().iterator().next().getTemperature().getMinimum().getValue());
 		aggregateResponse.setForeCastTemperatue(obj2.getDailyForecasts().iterator().next().getTemperature().getMinimum().getValue());
+		logs.info("The Method getResponseMapper Ends");
 		return aggregateResponse;
 		}catch (Exception e) {
+			logs.info("The Method getResponseMapper Exception");
 			throw new BadRequestFoundException("Something Went Wrong. Please try to connect with Admin");
 		}
 	}

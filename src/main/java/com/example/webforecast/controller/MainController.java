@@ -25,7 +25,7 @@ public class MainController {
     @Autowired
     private DataWeatherService dataWeatherService;
 
- 
+    
     @GetMapping("/Name/{Name}")
     public AggregateResponse getWeatherByCityName(@PathVariable("Name") String Name) throws InterruptedException, ExecutionException{
     	
