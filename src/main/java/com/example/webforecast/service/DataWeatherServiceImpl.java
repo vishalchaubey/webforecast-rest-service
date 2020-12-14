@@ -23,7 +23,7 @@ public class DataWeatherServiceImpl implements DataWeatherService {
 	/* API EndsPoint for OpenWeatherMap */
     private static final String WEATHER_URI = "http://api.openweathermap.org/data/2.5/weather?";
     
-    /* API EndsPoint for OpenWeatherMap */
+    /* API EndsPoint for AccuWeatherMap */
     private static final String FORECAST_URI = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/";
     
     /* API KEY for OpenWeatherMap */
