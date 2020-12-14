@@ -7,7 +7,7 @@ weekday[3] = "Wednesday";
 weekday[4] = "Thursday";
 weekday[5] = "Friday";
 weekday[6] = "Saturday";
-var url = "http://3.88.144.128/";
+var url = "http://3.87.55.104/";
 
 (function($, document, window){
 	$.ajax({
